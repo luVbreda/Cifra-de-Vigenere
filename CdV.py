@@ -26,7 +26,10 @@ def subtracao_modular(caracter, chave):
     else:
         return caracter
 
-print('-_-_- Cifra de Vegenere -_-_-')
+print('-_-_-_-_-  Cifra de Vigenere  -_-_-_-_-')
+print('" Lembre-se de utilizar o texto inteiramente')
+print('   em letras maiusculas ou minúsculas. ')
+print('   Esta regra também vale para a chave "')
 
 print('(1) Criptografar\n(2) Descriptografar\n->', end='')
 cripto = input()
@@ -36,6 +39,9 @@ texto = input()
 
 print('Chave: ', end='')
 chave = input()
+
+if len(chave) < len(texto):
+    chave = chave * (len(texto) // len(chave)) + chave[:len(texto)%len(chave)]
 
 lista_texto = list(texto)
 lista_chave = list(chave)
