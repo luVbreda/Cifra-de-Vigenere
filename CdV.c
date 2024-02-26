@@ -32,6 +32,24 @@ char subtracao_modular(char caracter, char chave){
     return caracter;
 }
 
+/* EXPLICANDO O FUNCIONAMENTO DAS FUNÇÕES:
+    A função usa um caracter do texto (T), e um caracter da chave (C).
+    No inicio da função, a mesma verifica se o caracter está entre
+    'A' e 'Z' ou 'a' e 'z', a fim de evitar criptografar espaços vazios
+    e números. Após isso, uma variavel auxiliar chamada 'indice' é criada.
+    'indice' recebe o número equivalente a variável (T) na tabela ascii
+    subtraído da valor de 'A' na tabela ascii. Portanto, se (T) recebe 'F',
+    o valor de 'indice' será 'F' (70 na tabela ascii) - 'A' (65 na tabela
+    ascii), logo, 'indice' tera o valor de 5 (int). Após isso, uma variável
+    auxiliar de nome 'cifra' é criada. 'cifra' recebe o valor do resto da
+    divisão de 'indice' + (C) - valor de 'A' na tabela ascii por 26.
+    Ou seja, seguindo o exemplo anterior e levando em consideração que o
+    caracter contido em (C) é 'H', temos: cifra = (5+72-65)%26, o que nos
+    leva a -> cifra = 12. Ao final da função, é retornado um caracter
+    que é a soma de 'cifra' com 'A', para voltar ao alfabeto na tabela
+    ascii, portanto, a função retornará 12 + 65 = 77 = 'M' na tabela ascii.
+    Resumindo: o caracter F com a chave H dará output M. */
+
 // criando as variaveis que serão usadas
 char cripto = 'a', *texto, *chave;
 
@@ -53,10 +71,10 @@ int main(){
     }
 
     printf("Texto: ");
-    scanf(" %s", texto);
+    scanf(" %[^\n]s", texto);
 
     printf("Chave: ");
-    scanf(" %s", chave);
+    scanf(" %[^\n]s", chave);
 
     // corrigindo o tamanho da chave caso seja menor que o texto a ser criptografado/descriptografado (caso seja maior não há problema)
     while(strlen(chave) < strlen(texto)){
